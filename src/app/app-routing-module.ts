@@ -16,9 +16,12 @@ const appRoutes: Routes = [
     { path: ':id/:name' , component: UserComponent},
   ]},
 
-  { path: 'servers' , canActivate: [AuthGuardService], component: ServersComponent, children: [
-    { path: ':id', component: ServerComponent },
-    { path: ':id/edit', component: EditServerComponent }
+  { path: 'servers' ,
+
+    component: ServersComponent,
+    children: [
+    { path: ':id', canActivate: [AuthGuardService], component: ServerComponent },
+    { path: ':id/edit', canActivate: [AuthGuardService], component: EditServerComponent }
   ]
   },
   {path: '**', component: PageNotFoundComponent}
